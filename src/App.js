@@ -12,6 +12,7 @@ function App() {
     const dispatch = useDispatch();
     const characters = useSelector(state =>  state.characters);
     const ships = useSelector(state => state.ships);
+    const isFetching = useSelector(state => state.isFetching);
 
     useEffect(() => {
         dispatch(getCharacters());
