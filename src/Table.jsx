@@ -71,9 +71,9 @@ function Table() {
                         data-is-light={rowIndex % 2 === 0}
                     >
                         <td className={bodyCellCSS}>{row.name}</td>
-                        <td>{row.birth_year || ''}</td>
-                        <td>{row.height || ''}</td>
-                        <td>{row.mass || ''}</td>
+                        <td className={bodyCellCSS}>{row.birth_year || ''}</td>
+                        <td className={bodyCellCSS}>{row.height || ''}</td>
+                        <td className={bodyCellCSS}>{row.mass || ''}</td>
                     </tr>
                 )}
             </tbody>
