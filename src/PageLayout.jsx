@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from 'emotion'
+import { css } from 'emotion';
 
 function PageLayout(props) {
     return <div
