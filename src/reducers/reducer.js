@@ -5,6 +5,11 @@ const reducer = (state = {}, action) => {
                 ...state,
                 characters: action.payload
             }
+        case 'GET_SHIPS':
+            return {
+                ...state,
+                ships: action.payload
+            }
         default:
             return state
     }
