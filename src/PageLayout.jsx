@@ -20,6 +20,7 @@ function PageLayout(props) {
         </div>
 
         <div className={css`
+            flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -27,6 +28,7 @@ function PageLayout(props) {
             padding: 45px;
             box-sizing: border-box;
             height: 100%;
+            overflow-y: scroll;
         `}>
             {props.children}
         </div>
