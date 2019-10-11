@@ -1,15 +1,10 @@
-const reducer = (state = { isFetching: true }, action) => {
+import { combineReducers } from 'redux';
+
+const reducer = (state = {}, action) => {
     switch (action.type) {
-    case 'REQUEST_DATA':
-        return {
-            ...state,
-            isFetching: true,
-            characters: action.payload
-        };
     case 'GET_CHARACTERS':
         return {
             ...state,
-            isFetching: false,
             characters: action.payload
         };
     case 'GET_SHIPS':
@@ -17,9 +12,33 @@ const reducer = (state = { isFetching: true }, action) => {
             ...state,
             ships: action.payload
         };
+    case 'GET_SINGLE_CHARACTER':
+        return {
+            ...state,
+            character: action.payload
+        };
     default:
         return state;
     }
 };
 
-export default reducer;
+const fetchingReducer = (state = { isFetching: true }, action) => {
+    switch (action.type) {
+    case 'REQUEST_DATA':
+        return {
+            ...state,
+            isFetching: true
+        };
+    case 'RECEIVED_DATA':
+        return {
+            ...state,
+            isFetching: false
+        };
+    default:
+        return state;
+    }
+};
+
+const rootReducer = combineReducers({ reducer, fetchingReducer });
+
+export default rootReducer;

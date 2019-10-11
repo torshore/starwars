@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
     const dispatch = useDispatch();
-    const isFetching = useSelector(state => state.isFetching);
+    const isFetching = useSelector(state => state.fetchingReducer.isFetching);
 
     useEffect(() => {
         dispatch(getCharacters());

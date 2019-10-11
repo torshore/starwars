@@ -22,10 +22,10 @@ const bodyCellCSS = css`
     white-space: nowrap;
 `;
 
-function Table() {
+function Table(props) {
     const [ currentPage, setCurrentPage ] = useState(0);
-    const characters = useSelector(state => state.characters);
-    const ships = useSelector(state => state.ships);
+    const characters = useSelector(state => state.reducer.characters);
+    const ships = useSelector(state => state.reducer.ships);
     const rowData = characters && characters.concat();
     ships && ships.map((ship, shipIndex) => {
         return rowData.splice((shipIndex + 1) * 8 - 1, 0, ship);
