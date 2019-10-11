@@ -54,7 +54,32 @@ export const getCharacters = () => {
                 return acc.concat(currentArray);
             }, characters);
 
-            return dispatch({ type: 'GET_CHARACTERS', payload: characters });
+            dispatch({ type: 'GET_CHARACTERS', payload: characters });
+
+            return dispatch({ type: 'RECEIVED_DATA' });
+        });
+    };
+};
+
+export const getSingleCharacter = (characterName) => {
+    return dispatch => {
+        dispatch({ type: 'REQUEST_DATA' });
+
+        return fetch(`${CHARACTER_URL}/?search=${encodeURIComponent(characterName)}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            return response.json();
+        }).then(data => {
+            dispatch({ type: 'RECEIVED_DATA' });
+
+            return dispatch({ type: 'GET_SINGLE_CHARACTER', payload: data.results });
         });
     };
 };

@@ -22,10 +22,10 @@ const bodyCellCSS = css`
     white-space: nowrap;
 `;
 
-function Table() {
+function Table(props) {
     const [ currentPage, setCurrentPage ] = useState(0);
-    const characters = useSelector(state => state.characters);
-    const ships = useSelector(state => state.ships);
+    const characters = useSelector(state => state.reducer.characters);
+    const ships = useSelector(state => state.reducer.ships);
     const rowData = characters && characters.concat();
     ships && ships.map((ship, shipIndex) => {
         return rowData.splice((shipIndex + 1) * 8 - 1, 0, ship);
@@ -45,10 +45,15 @@ function Table() {
             <tr
                 key={rowIndex}
                 className={css`
+                    cursor: pointer;
                     &[data-is-light=true] {
                         background: #163c8e;
                     }
                 `}
+                onClick={() => row.crew
+                    ? null
+                    : props.history.push(`/characters/${row.name}`)
+                }
                 data-is-light={rowIndex % 2 === 0}
             >
                 <td className={bodyCellCSS}>{row.name}</td>
