@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { getCharacters, getShips } from './actions/actions.js';
+import CharacterViewPage from './CharacterViewPage.jsx';
 import PageLayout from './PageLayout.jsx';
 import Spinner from './Spinner.jsx';
 import Table from './Table.jsx';
@@ -23,10 +24,21 @@ function App() {
         <Router>
             <PageLayout>
                 <Switch>
-                    <Route exact path="/" render={() =>
+                    <Route exact path="/" render={({ history }) =>
                         isFetching
                             ? <Spinner />
-                            : <Table />
+                            : <Table
+                                history={history}
+                            />
+                    } />
+
+                    <Route path="/characters/:name?" render={({ match }) =>
+                        <CharacterViewPage
+                            characterName={match && match.params.name
+                                ? decodeURIComponent(match.params.name)
+                                : null
+                            }
+                        />
                     } />
                 </Switch>
             </PageLayout>

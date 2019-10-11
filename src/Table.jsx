@@ -45,10 +45,15 @@ function Table() {
             <tr
                 key={rowIndex}
                 className={css`
+                    cursor: pointer;
                     &[data-is-light=true] {
                         background: #163c8e;
                     }
                 `}
+                onClick={() => row.crew
+                    ? null
+                    : props.history.push(`/characters/${row.name}`)
+                }
                 data-is-light={rowIndex % 2 === 0}
             >
                 <td className={bodyCellCSS}>{row.name}</td>
